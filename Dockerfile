@@ -6,11 +6,12 @@ WORKDIR /app
 
 # Copy requirements first — Docker caches this layer
 # If requirements don't change, this layer is reused on rebuild
-COPY requirements.txt .
+COPY requirements-core.txt .
+COPY requirements-agents.txt .
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install --no-cache-dir -r requirements-core.txt
+RUN pip install --no-cache-dir --no-deps -r requirements-agents.txt
 # Copy rest of application code
 COPY . .
 
