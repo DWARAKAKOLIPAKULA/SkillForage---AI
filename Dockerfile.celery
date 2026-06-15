@@ -3,11 +3,8 @@ FROM python:3.11-slim
 WORKDIR /app
 
 COPY requirements-core.txt .
-COPY requirements-agents.txt .
 RUN pip install --no-cache-dir -r requirements-core.txt
-RUN pip install --no-cache-dir --no-deps -r requirements-agents.txt
 
 COPY . .
 
-# Celery worker command — pool=solo for Windows compatibility
 CMD ["celery", "-A", "app.celery_app", "worker", "--loglevel=info", "--pool=solo"]

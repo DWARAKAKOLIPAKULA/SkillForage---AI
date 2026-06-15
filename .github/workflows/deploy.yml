@@ -44,20 +44,17 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install agent dependencies
-        run: pip install -r requirements-agents.txt
-      
       - name: Install core dependencies
         run: pip install -r requirements-core.txt
 
-      - name: Run basic import test
+      - name: Run import test
         env:
           DATABASE_URL: postgresql+asyncpg://skillforge:skillforge123@localhost:5433/skillforge_db
           REDIS_URL: redis://localhost:6379/0
           SECRET_KEY: test-secret-key
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-         python -c "import fastapi; import sqlalchemy; import celery; import redis; print('Core imports successful')"
+          python -c "import fastapi; import sqlalchemy; import celery; import redis; print('Core imports successful')"
 
   build:
     needs: test
@@ -74,7 +71,7 @@ jobs:
       - name: Build Celery Docker image
         run: docker build -f Dockerfile.celery -t skillforge-celery:latest .
 
-      - name: Verify images built successfully
+      - name: Verify images built
         run: |
           docker images | grep skillforge
           echo "Docker images built successfully"
