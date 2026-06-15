@@ -44,8 +44,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Install agent dependencies
+        run: pip install -r requirements-agents.txt
+      
+      - name: Install core dependencies
+        run: pip install -r requirements-core.txt
 
       - name: Run basic import test
         env:
