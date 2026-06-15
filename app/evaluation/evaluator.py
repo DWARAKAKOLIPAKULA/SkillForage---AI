@@ -116,6 +116,7 @@ from deepeval.test_case import LLMTestCase
 from deepeval.models.base_model import DeepEvalBaseLLM
 from langchain_groq import ChatGroq
 from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage, SystemMessage
 import mlflow
 import time
 from app.core.config import settings
