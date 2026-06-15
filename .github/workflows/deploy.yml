@@ -57,7 +57,7 @@ jobs:
           SECRET_KEY: test-secret-key
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          python -c "import fastapi; import sqlalchemy; import celery; import redis; print('Core imports successful')"
+         python -c "import fastapi; import sqlalchemy; import celery; import redis; print('Core imports successful')"
 
   build:
     needs: test
